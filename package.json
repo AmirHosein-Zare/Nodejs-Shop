@@ -12,6 +12,7 @@
     "config": "^3.3.9",
     "debug": "^4.3.4",
     "express": "^4.18.2",
-    "mongoose": "^6.9.2"
+    "mongoose": "^6.9.2",
+    "morgan": "^1.10.0"
   }
 }
