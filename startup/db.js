@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 module.exports = () => {
     mongoose.set('strictQuery', false);
-    mongoose.connect(config.get('db'))
+    mongoose.connect("mongodb://127.0.0.1/Saffron")
     .then(()=>{console.log('connected to mongodb...');})
+    .catch(()=>{console.log('connection failed...');});
 }
