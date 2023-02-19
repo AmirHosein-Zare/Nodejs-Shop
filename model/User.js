@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -28,6 +30,23 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        
-    }
+        match: regex
+    },
+    password:{
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 6,
+        maxlength: 255
+    },
+    comments: [String], // replace it with Comment Model
+    address:{
+        type: String,
+        trim: true,
+        minlength: 10,
+        maxlength: 555
+    },
+    Order: [String], // replace it with Order Model
+    Comments: [String] // replace it with Comment Model
 })
+
