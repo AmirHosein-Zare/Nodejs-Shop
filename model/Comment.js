@@ -30,3 +30,7 @@ const isValidComment = (comment) => {
 
     return schema.validate(comment);
 }
+
+module.exports.isValidComment = isValidComment;
+module.exports.CommentSchema = CommentSchema;
+module.exports.Comment = Comment;
