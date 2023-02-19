@@ -77,3 +77,7 @@ const isValidProduct = (product) => {
 
     return schema.validate(product);
 }
+
+module.exports.isValidProduct = isValidProduct;
+module.exports.ProductSchema = ProductSchema;
+module.exports.Product = Product;
