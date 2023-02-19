@@ -23,3 +23,10 @@ const CommentSchema = new mongoose.Schema({
 
 const Comment = mongoose.model('Comment', CommentSchema);
 
+const isValidComment = (comment) => {
+    const schema = Joi.object({
+        message: Joi.string().required().trim()
+    })
+
+    return schema.validate(comment);
+}
