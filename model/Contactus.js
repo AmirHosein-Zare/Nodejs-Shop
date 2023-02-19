@@ -27,3 +27,6 @@ const ContactusSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+const Contactus = mongoose.model('Contactus', ContactusSchema);
+
