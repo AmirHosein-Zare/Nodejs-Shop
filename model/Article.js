@@ -24,3 +24,5 @@ const ArticleSchema = new mongoose.Schema({
         type: [String]
     }
 });
+
+const Article = mongoose.model('Article', ArticleSchema);
