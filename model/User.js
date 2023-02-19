@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const mongoose = require('mongoose');
 
 // regular expression for email
@@ -53,3 +54,19 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
+const isValidUser = (user) => {
+    const schema = Joi.object({
+        name: Joi.string().required().min(3).max(255).trim().lowercase(),
+        username: Joi.string().required().min(3).max(255).trim(),
+        number: Joi.string().required().length(11).trim(),
+        email: Joi.string().required().pattern(regex),
+        password: Joi.string().required().trim().min(6).max(255),
+        address: Joi.string().trim()
+    });
+
+    return schema.validate(user);
+};
+
+module.exports.UserSchema = UserSchema;
+module.exports.User = User;
+module.exports.isValidUser = isValidUser;
