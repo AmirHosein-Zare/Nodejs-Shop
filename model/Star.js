@@ -11,3 +11,6 @@ const StarSchema = new mongoose.Schema({
         min: 0
     }
 });
+
+const Star = mongoose.model('Star', StarSchema);
+
