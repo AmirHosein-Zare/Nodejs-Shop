@@ -30,3 +30,14 @@ const ContactusSchema = new mongoose.Schema({
 
 const Contactus = mongoose.model('Contactus', ContactusSchema);
 
+const isValidContactus = (data) => {
+    const schema = Joi.object({
+        name: Joi.string().trim().required().min(3),
+        email: Joi.string().trim().required().pattern(regex),
+        message: Joi.string().trim().required(),
+        date: Joi.date()
+    })
+
+    return schema.validate(data);
+}
+
