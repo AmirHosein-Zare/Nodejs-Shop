@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Joi = require('joi');
 const {ProductSchema} = require('./Product');
 
 const StarSchema = new mongoose.Schema({
@@ -14,3 +13,5 @@ const StarSchema = new mongoose.Schema({
 
 const Star = mongoose.model('Star', StarSchema);
 
+module.exports.StarSchema = StarSchema;
+module.exports.Star = Star;
