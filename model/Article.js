@@ -38,3 +38,6 @@ const isValidArticle = (article) => {
     return schema.validate(article);
 }
 
+module.exports.isValidArticle = isValidArticle;
+module.exports.ArticleSchema = ArticleSchema;
+module.exports.Article = Article;
