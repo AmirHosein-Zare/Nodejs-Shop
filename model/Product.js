@@ -57,3 +57,6 @@ const ProductSchema = new mongoose.Schema({
     },
     Comments: [String] // replace it with Comment Model
 });
+
+const Product = mongoose.model('Product', ProductSchema);
+
