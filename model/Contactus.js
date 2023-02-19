@@ -41,3 +41,6 @@ const isValidContactus = (data) => {
     return schema.validate(data);
 }
 
+module.exports.isValidContactus = isValidContactus;
+module.exports.ContactusSchema = ContactusSchema;
+module.exports.Contactus = Contactus;
