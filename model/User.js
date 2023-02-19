@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// regular expression for email
 let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
 
 const UserSchema = new mongoose.Schema({
@@ -48,5 +49,7 @@ const UserSchema = new mongoose.Schema({
     },
     Order: [String], // replace it with Order Model
     Comments: [String] // replace it with Comment Model
-})
+});
+
+const User = mongoose.model('User', UserSchema);
 
