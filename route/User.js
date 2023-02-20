@@ -8,3 +8,10 @@ router.get('/api/users', (req, res) => {
     
     res.send(users);
 });
+
+router.get('/api/users/:id', (req, res) => {
+    const user = User.findById(req.params.id);
+    if(!user) return res.status(404).send('user Not Found!');
+
+    res.send(user);
+});
