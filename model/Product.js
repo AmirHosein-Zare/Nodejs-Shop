@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
+const {CommentSchema} = require('./Comment');
 
 const ProductSchema = new mongoose.Schema({
     name:{
@@ -55,7 +56,7 @@ const ProductSchema = new mongoose.Schema({
     neighbor:{
         type: String
     },
-    Comments: [String] // replace it with Comment Model
+    Comments: [CommentSchema] // replace it with Comment Model
 });
 
 const Product = mongoose.model('Product', ProductSchema);
