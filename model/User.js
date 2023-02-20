@@ -50,7 +50,7 @@ const UserSchema = new mongoose.Schema({
         minlength: 10,
         maxlength: 555
     },
-    Order: [OrderSchema], // replace it with Order Model
+    orders: [OrderSchema], // replace it with Order Model
 });
 
 const User = mongoose.model('User', UserSchema);
