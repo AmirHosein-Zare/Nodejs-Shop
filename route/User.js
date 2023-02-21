@@ -65,3 +65,10 @@ router.put('/:id', async (req, res) => {
 
     res.send(result);
 });
+
+// delete request
+router.delete('/:id', async (req, res) => {
+    // find user and delete
+    const user = await User.findByIdAndRemove(req.params.id);
+    res.send(user);
+});
