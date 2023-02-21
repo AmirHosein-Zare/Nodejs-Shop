@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
     res.send(user);
 });
 
-//put request -> edit data
+//put request -> edit all data
 router.put('/:id', async (req, res) => {
     //get user with id from url params
     const user = await User.findById(req.params.id);
@@ -65,6 +65,8 @@ router.put('/:id', async (req, res) => {
 
     res.send(result);
 });
+
+// edit one of the comment or order
 
 // delete request
 router.delete('/:id', async (req, res) => {
