@@ -1,30 +1,66 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const {Product, isValidProduct} = require('../model/Product');
+const { Product, isValidProduct } = require("../model/Product");
 
 //get all products
-router.get('/', async(req, res) => {
-    const products = await Product.find();
-    if(!products) return res.status(404).send('products Not Found');
+router.get("/", async (req, res) => {
+  const products = await Product.find();
+  if (!products) return res.status(404).send("products Not Found");
 
-    res.send(products);
+  res.send(products);
 });
 
 //get product with id
-router.get('/:id', async(req, res) => {
-    const product = await Product.findById(req.params.id);
-    if(!product) return res.status(404).send('product Not found');
+router.get("/:id", async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (!product) return res.status(404).send("product Not found");
 
-    res.send(product);
+  res.send(product);
 });
 
-router.post('/', async(req, res) => {
-    const {error} = isValidProduct(req.body);
-    if(error) return res.status(404).send('Not valid data');
+// post product api
+router.post("/", async (req, res) => {
+  const { error } = isValidProduct(req.body);
+  if (error) return res.status(400).send("Not Valid Data");
 
-    const newProduct =req.body;
+  const newProduct = req.body;
 
-    const product = new Product({
+  const product = new Product({
+    name: newProduct.name,
+    amount: newProduct.amount,
+    price: newProduct.price,
+    picture: newProduct.picture,
+    explain: newProduct.explain,
+    weight: newProduct.weight,
+    size: newProduct.size,
+    warranty: newProduct.warranty,
+    type: newProduct.type,
+    offPercent: newProduct.offPercent,
+    neighbor: newProduct.neighbor,
+    Comments: [],
+  });
+
+  await product.save();
+  res.send(product);
+});
+
+// put product api
+router.put("/:id", async (req, res) => {
+  // check data validation
+  const { error } = isValidProduct(req.body);
+  if (error) return res.status(400).send("Not Valid Data");
+
+  // check to Find product
+  const check = await Product.findById(req.params.id);
+  if (!check) return res.status(404).send("Product Not Found");
+
+  const newProduct = req.body;
+
+  // update data
+  const product = await Product.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
         name: newProduct.name,
         amount: newProduct.amount,
         price: newProduct.price,
@@ -36,9 +72,10 @@ router.post('/', async(req, res) => {
         type: newProduct.type,
         offPercent: newProduct.offPercent,
         neighbor: newProduct.neighbor,
-        Comments: []
-    });
-
-    await product.save();
-    res.send(product);
+      },
+    },
+    { new: true }
+  );
+    
+  res.send(product);
 });
