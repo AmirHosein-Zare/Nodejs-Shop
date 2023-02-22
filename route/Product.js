@@ -76,6 +76,13 @@ router.put("/:id", async (req, res) => {
     },
     { new: true }
   );
-    
+
   res.send(product);
 });
+
+//delete product api
+router.delete('/:id', async(req, res) => {
+    const product = await Product.findByIdAndRemove(req.params.id);
+    if(!product) return res.status(404).send('Product Not Found');
+    res.send(product);
+})
