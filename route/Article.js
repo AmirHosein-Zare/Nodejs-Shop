@@ -52,10 +52,10 @@ router.put('/:id', async(req, res) => {
     // update Article
     const article = await Article.findByIdAndUpdate(req.params.id, {
         $set:{
-            title: newArticle.title,
-            description: newArticle.description,
-            author: User.findById(newArticle.userId),
-            photo: newArticle.photo
+            'title': newArticle.title,
+            'description': newArticle.description,
+            'author': User.findById(newArticle.userId),
+            'photo': newArticle.photo
         }
     }, {new: true});
 
