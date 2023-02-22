@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
     type: newProduct.type,
     offPercent: newProduct.offPercent,
     neighbor: newProduct.neighbor,
-    Comments: [],
+    comments: [],
   });
 
   await product.save();
@@ -61,17 +61,17 @@ router.put("/:id", async (req, res) => {
     req.params.id,
     {
       $set: {
-        name: newProduct.name,
-        amount: newProduct.amount,
-        price: newProduct.price,
-        picture: newProduct.picture,
-        explain: newProduct.explain,
-        weight: newProduct.weight,
-        size: newProduct.size,
-        warranty: newProduct.warranty,
-        type: newProduct.type,
-        offPercent: newProduct.offPercent,
-        neighbor: newProduct.neighbor,
+        'name': newProduct.name,
+        'amount': newProduct.amount,
+        'price': newProduct.price,
+        'picture': newProduct.picture,
+        'explain': newProduct.explain,
+        'weight': newProduct.weight,
+        'size': newProduct.size,
+        'warranty': newProduct.warranty,
+        'type': newProduct.type,
+        'offPercent': newProduct.offPercent,
+        'neighbor': newProduct.neighbor,
       },
     },
     { new: true }

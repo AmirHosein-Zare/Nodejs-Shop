@@ -54,12 +54,12 @@ router.put('/:id', async (req, res) => {
     //update user
     const result = await User.findByIdAndUpdate(req.params.id, {
         $set:{
-            name: newUser.name,
-            username: newUser.username,
-            number: newUser.number,
-            email: newUser.email,
-            password: newUser.password,
-            address: newUser.address,
+            'name': newUser.name,
+            'username': newUser.username,
+            'number': newUser.number,
+            'email': newUser.email,
+            'password': newUser.password,
+            'address': newUser.address,
         }
     }, {new: true});
 
