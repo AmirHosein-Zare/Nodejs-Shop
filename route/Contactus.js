@@ -9,3 +9,11 @@ router.get('/', async(req, res) => {
 
     res.send(messages);
 })
+
+// get contact us by id api
+router.get('/:id', async(req, res) => {
+    const message = await Contactus.findById(req.params.id);
+    if(!message) return res.status(404).send('Message Not Found');
+
+    res.send(message);
+})
