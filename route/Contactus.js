@@ -31,4 +31,23 @@ router.post('/', async(req, res) => {
 
     await message.save();
     res.send(message);
-})
+});
+
+// put api
+router.put('/:id', async(req, res) => {
+    const message = await Contactus.findById(req.params.id);
+    if(!message) return res.status(404).send('Message Not Found');
+
+    const {error} = isValidContactus(req.body);
+    if(error) return res.status(400).send('Not Valid Data');
+
+    const contactus = await Contactus.findByIdAndUpdate(req.params.id, {
+        $set:{
+            name: req.body.name,
+            email: req.body.email,
+            message: req.body.message
+        }
+    }, {new: true});
+
+    res.send(contactus);
+});
