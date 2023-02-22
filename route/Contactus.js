@@ -17,3 +17,18 @@ router.get('/:id', async(req, res) => {
 
     res.send(message);
 })
+
+// post Contact us api
+router.post('/', async(req, res) => {
+    const {error} = isValidContactus(req.body);
+    if(error) return res.status(400).send('Not Valid Data');
+
+    const message = new Contactus({
+        name: req.body.name,
+        email: req.body.email,
+        message: req.body.message
+    })
+
+    await message.save();
+    res.send(message);
+})
