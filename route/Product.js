@@ -17,3 +17,28 @@ router.get('/:id', async(req, res) => {
 
     res.send(product);
 });
+
+router.post('/', async(req, res) => {
+    const {error} = isValidProduct(req.body);
+    if(error) return res.status(404).send('Not valid data');
+
+    const newProduct =req.body;
+
+    const product = new Product({
+        name: newProduct.name,
+        amount: newProduct.amount,
+        price: newProduct.price,
+        picture: newProduct.picture,
+        explain: newProduct.explain,
+        weight: newProduct.weight,
+        size: newProduct.size,
+        warranty: newProduct.warranty,
+        type: newProduct.type,
+        offPercent: newProduct.offPercent,
+        neighbor: newProduct.neighbor,
+        Comments: []
+    });
+
+    await product.save();
+    res.send(product);
+});
