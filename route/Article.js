@@ -29,7 +29,8 @@ router.post('/', async(req, res) => {
     const article = new Article({
         title: newArticle.title,
         description: newArticle.description,
-        author: User.findById(newArticle.userId)
+        author: User.findById(newArticle.userId),
+        photo: newArticle.photo
     });
 
     await article.save();
