@@ -40,21 +40,24 @@ router.post('/', async(req, res) => {
 // PUT API
 router.put('/:id', async(req, res) => {
     // check article
-    const article = await Article.findById(req.params.id);
-    if(!article) return res.status(404).send('Article Not Found');
+    const check = await Article.findById(req.params.id);
+    if(!check) return res.status(404).send('Article Not Found');
 
     // check validation
     const {error} = isValidArticle(req.body);
     if(error) return res.status(404).send('Article Not Valid');
 
+    const newArticle = req.body;
+
     // update Article
-    const newArticle = await Article.findByIdAndUpdate(req.params.id, {
+    const article = await Article.findByIdAndUpdate(req.params.id, {
         $set:{
             title: newArticle.title,
             description: newArticle.description,
-            author: User.findById(newArticle.userId)
+            author: User.findById(newArticle.userId),
+            photo: newArticle.photo
         }
     }, {new: true});
 
-    res.send(newArticle);
+    res.send(article);
 })
