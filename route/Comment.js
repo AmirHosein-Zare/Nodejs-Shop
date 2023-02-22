@@ -9,3 +9,11 @@ router.get('/', async(req, res) => {
 
     res.send(comments);
 });
+
+// get comment by id
+router.get('/:id', async(req, res) => {
+    const comment = await Comment.findById();
+    if(!comment) return res.status(404).send('Comment Not Found');
+
+    res.send(comment);
+});
