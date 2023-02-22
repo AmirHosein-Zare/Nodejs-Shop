@@ -61,3 +61,11 @@ router.put('/:id', async(req, res) => {
 
     res.send(article);
 })
+
+// delete api
+router.delete('/:id', async(req, res) => {
+    const article = await Article.findByIdAndRemove(req.params.id);
+    if(!article) return res.status(404).send('article Not Found');
+
+    res.send(article);
+});
