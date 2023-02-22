@@ -51,3 +51,11 @@ router.put('/:id', async(req, res) => {
 
     res.send(contactus);
 });
+
+// delete api
+router.delete('/:id', async(req, res) => {
+    const message = await Contactus.findByIdAndRemove(req.params.id);
+    if(!message) return res.status(404).send('Message Not Found');
+
+    res.send(message);
+});
