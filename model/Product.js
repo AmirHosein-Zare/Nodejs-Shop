@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const {CommentSchema} = require('./Comment');
+const {StarSchema} = require('../model/Star');
 
 const ProductSchema = new mongoose.Schema({
     name:{
@@ -56,7 +57,14 @@ const ProductSchema = new mongoose.Schema({
     neighbor:{
         type: String
     },
-    Comments: [CommentSchema] // replace it with Comment Model
+    Comments: [CommentSchema],
+    Star: {
+        type: StarSchema,
+        default: {
+             Product: this.ProductSchema,
+             average: 0
+        }
+    }
 });
 
 const Product = mongoose.model('Product', ProductSchema);
