@@ -5,6 +5,7 @@ const UserRoutes = require('../route/User');
 const ProductRoutes = require('../route/Product');
 const ContactusRoutes = require('../route/Contactus');
 const ArticleRoutes = require('../route/Article');
+const CommentRoutes = require('../route/Comment');
 
 module.exports = () => {
     app.use(express.json());
@@ -14,4 +15,5 @@ module.exports = () => {
     app.use('/api/products', ProductRoutes);
     app.use('/api/contactus', ContactusRoutes);
     app.use('/api/articles', ArticleRoutes);
+    app.use('/api/comments', CommentRoutes);
 }

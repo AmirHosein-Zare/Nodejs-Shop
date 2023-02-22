@@ -34,3 +34,5 @@ router.post('/', async(req, res) => {
     await comment.save();
     res.send(comment);
 });
+
+//put api
