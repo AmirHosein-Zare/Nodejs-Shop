@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-const {ProductSchema} = require('./Product');
+const {Product} = require('./Product');
 
 const StarSchema = new mongoose.Schema({
-    Product:{
-        type: ProductSchema
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
     },
     average:{
         type: Number,

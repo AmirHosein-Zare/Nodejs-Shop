@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const {CommentSchema} = require('./Comment');
-const {StarSchema} = require('../model/Star');
+const {Comment} = require('./Comment');
+const {Star} = require('./Star');
 
-const ProductSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true,
@@ -57,17 +57,17 @@ const ProductSchema = new mongoose.Schema({
     neighbor:{
         type: String
     },
-    Comments: [CommentSchema],
-    Star: {
-        type: StarSchema,
-        default: {
-             Product: this.ProductSchema,
-             average: 0
-        }
-    }
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }],
+    star: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Star'
+    }        
 });
 
-const Product = mongoose.model('Product', ProductSchema);
+const Product = mongoose.model('Product', productSchema);
 
 const isValidProduct = (product) => {
     const schema = Joi.object({
@@ -88,5 +88,5 @@ const isValidProduct = (product) => {
 }
 
 module.exports.isValidProduct = isValidProduct;
-module.exports.ProductSchema = ProductSchema;
+module.exports.ProductSchema = productSchema;
 module.exports.Product = Product;

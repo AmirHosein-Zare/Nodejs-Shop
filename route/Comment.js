@@ -22,12 +22,9 @@ router.get('/:id', async(req, res) => {
 
 // post api
 router.post('/', async(req, res) => {
-    const {error} = isValidComment(req.body);
-    if(error) return res.status(400).send('Not Valid Data');
-
     const comment = new Comment({
-        User: await User.findById(req.body.userId),
-        Product: await Product.findById(req.body.productId),
+        User: req.body.userId,
+        Product: req.body.productId,
         message: req.body.message
     });
 
@@ -36,3 +33,5 @@ router.post('/', async(req, res) => {
 });
 
 //put api
+
+module.exports = router;

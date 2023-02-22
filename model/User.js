@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
-const {CommentSchema} = require('./Comment');
-const {OrderSchema} = require('./Order');
+const {Comment} = require('./Comment');
+const {Order} = require('./Order');
 
 // regular expression for email
 let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
@@ -43,14 +43,20 @@ const UserSchema = new mongoose.Schema({
         minlength: 6,
         maxlength: 255
     },
-    comments: [CommentSchema], // replace it with Comment Model
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }], 
     address:{
         type: String,
         trim: true,
         minlength: 10,
         maxlength: 555
     },
-    orders: [OrderSchema], // replace it with Order Model
+    orders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order'
+    }], 
 });
 
 const User = mongoose.model('User', UserSchema);

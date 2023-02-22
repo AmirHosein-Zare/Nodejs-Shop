@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const {UserSchema} = require('./User');
-const {ProductSchema} = require('./Product');
+const {User} = require('./User');
+const {Product} = require('./Product');
 
 const CommentSchema = new mongoose.Schema({
     User:{
-        type: UserSchema
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     Product:{
-        type: ProductSchema
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
     },
     message:{
         type: String,
@@ -25,7 +27,7 @@ const Comment = mongoose.model('Comment', CommentSchema);
 
 const isValidComment = (comment) => {
     const schema = Joi.object({
-        message: Joi.string().required().trim()
+        message: Joi.string().required().trim() 
     })
 
     return schema.validate(comment);

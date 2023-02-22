@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 const morgan = require('morgan');
 const UserRoutes = require('../route/User');
 const ProductRoutes = require('../route/Product');
@@ -7,7 +6,7 @@ const ContactusRoutes = require('../route/Contactus');
 const ArticleRoutes = require('../route/Article');
 const CommentRoutes = require('../route/Comment');
 
-module.exports = () => {
+module.exports = function(app) {
     app.use(express.json());
     app.use(express.urlencoded({extended: true}));
     app.use(morgan('tiny'));
