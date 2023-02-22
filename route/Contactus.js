@@ -43,9 +43,9 @@ router.put('/:id', async(req, res) => {
 
     const contactus = await Contactus.findByIdAndUpdate(req.params.id, {
         $set:{
-            name: req.body.name,
-            email: req.body.email,
-            message: req.body.message
+            'name': req.body.name,
+            'email': req.body.email,
+            'message': req.body.message
         }
     }, {new: true});
 
