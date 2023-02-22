@@ -20,7 +20,7 @@ const ArticleSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    photos:{
+    photo:{
         type: [String]
     }
 });
