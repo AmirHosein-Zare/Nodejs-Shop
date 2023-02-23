@@ -10,3 +10,10 @@ router.get('/', async(req, res) => {
     res.send(orders);
 });
 
+// get by id api
+router.get('/:id', async(req, res) => {
+    const order = await Order.findById(req.params.id);
+    if(!order) return res.status(404).send('Order Not Found');
+
+    res.send(order);
+})
