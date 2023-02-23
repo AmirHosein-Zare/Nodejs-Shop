@@ -6,6 +6,7 @@ const ContactusRoutes = require('../route/Contactus');
 const ArticleRoutes = require('../route/Article');
 const CommentRoutes = require('../route/Comment');
 const OrderRoutes = require('../route/Order');
+const StarRoutes = require('../route/Star');
 
 module.exports = function(app) {
     app.use(express.json());
@@ -17,4 +18,5 @@ module.exports = function(app) {
     app.use('/api/articles', ArticleRoutes);
     app.use('/api/comments', CommentRoutes);
     app.use('/api/orders', OrderRoutes);
+    app.use('/api/stars', StarRoutes);
 }
