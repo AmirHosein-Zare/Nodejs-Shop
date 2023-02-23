@@ -41,3 +41,12 @@ router.put('/:id', async(req, res) => {
     res.send(newStar);
 });
 
+// delete api
+router.delete('/:id', async(req, res) => {
+    const star = await Star.findByIdAndRemove(req.params.id);
+    if(!star) return res.status(404).send('Star Not Found');
+
+    res.send(star);
+})
+
+module.exports = router;
