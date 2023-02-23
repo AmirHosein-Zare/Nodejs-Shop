@@ -28,3 +28,12 @@ router.post('/', async(req, res) => {
     await order.save();
     res.send(order);
 });
+
+// put api
+router.put('/:id', async(req, res) => {
+    const newOrder = await Order.findByIdAndUpdate(req.params.id, {
+        'User': req.body.userId,
+        'Product': req.body.productId
+    }, {new: true});
+    res.send(newOrder);
+});
