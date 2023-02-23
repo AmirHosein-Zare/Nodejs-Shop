@@ -26,3 +26,18 @@ router.post('/', async(req, res) => {
 
     await star.save();
 });
+
+// put api
+router.put('/:id', async(req, res) => {
+    const star = await Star.findById(req.params.id);
+    if(!star) return res.status(404).send('Star Not Found');
+    
+    const newStar = await Star.findByIdAndUpdate(req.params.id, {
+        $set:{
+            average: req.body.average
+        }
+    }, {new: true});
+
+    res.send(newStar);
+});
+
