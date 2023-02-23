@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const {Comment, isValidComment} = require('../model/Comment');
-const { Product } = require('../model/Product');
-const { User } = require('../model/User');
 
 // get all comments api
 router.get('/', async(req, res) => {
@@ -33,5 +31,19 @@ router.post('/', async(req, res) => {
 });
 
 //put api
+router.put('/:id', async(req, res) => {
+    const result = await Comment.findById(req.params.id);
+    if(!result) return res.status(404).send('Comment Not Found');
+
+    const comment = await Comment.findByIdAndUpdate(req.params.id, {
+        $set:{
+            User: req.body.userId,
+            Product: req.body.productId,
+            message: req.body.message
+        }
+    }, {new: true});
+
+    res.send(comment);
+});
 
 module.exports = router;
