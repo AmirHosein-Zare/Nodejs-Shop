@@ -16,4 +16,15 @@ router.get('/:id', async(req, res) => {
     if(!order) return res.status(404).send('Order Not Found');
 
     res.send(order);
-})
+});
+
+// post api
+router.post('/', async(req, res) => {
+    const order = new Order({
+        User: req.body.userId,
+        Product: req.body.productId
+    });
+
+    await order.save();
+    res.send(order);
+});
