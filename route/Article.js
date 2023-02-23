@@ -22,14 +22,14 @@ router.get('/:id', async(req, res) => {
 // post article api
 router.post('/', async(req, res) => {
     const {error} = isValidArticle(req.body);
-    if(error) return res.status(400).send('Not Valid Data');
+    //if(error) return res.status(400).send('Not Valid Data');
 
     const newArticle = req.body;
 
     const article = new Article({
         title: newArticle.title,
         description: newArticle.description,
-        author: User.findById(newArticle.userId),
+        author: newArticle.userId,
         photo: newArticle.photo
     });
 

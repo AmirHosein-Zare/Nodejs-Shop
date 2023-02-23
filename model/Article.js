@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const {UserSchema} = require('./User');
+const {User} = require('./User');
 
 const ArticleSchema = new mongoose.Schema({
     title:{
@@ -13,7 +13,8 @@ const ArticleSchema = new mongoose.Schema({
         default: Date.now
     },
     author:{
-        type: UserSchema
+        type: mongoose.Schema.Types.ObjectId,
+        ref:  'User'
     },
     description:{
         type: String,
@@ -21,7 +22,7 @@ const ArticleSchema = new mongoose.Schema({
         required: true
     },
     photo:{
-        type: [String]
+        type: String
     }
 });
 
@@ -30,9 +31,9 @@ const Article = mongoose.model('Article', ArticleSchema);
 const isValidArticle = (article) => {
     const schema = Joi.object({
         title: Joi.string().trim().required(),
-        date: Joi.Date(),
+        date: Joi.date(),
         description: Joi.string().trim().required(),
-        photos: Joi.array()
+        photo: Joi.string()
     });
 
     return schema.validate(article);
