@@ -55,7 +55,8 @@ const productSchema = new mongoose.Schema({
         max: 100
     },
     neighbor:{
-        type: String
+        type: String,
+        default: "default"
     },
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
