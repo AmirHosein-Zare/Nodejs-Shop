@@ -54,7 +54,7 @@ router.put('/:id', async(req, res) => {
         $set:{
             'title': newArticle.title,
             'description': newArticle.description,
-            'author': User.findById(newArticle.userId),
+            'author': newArticle.userId,
             'photo': newArticle.photo
         }
     }, {new: true});
