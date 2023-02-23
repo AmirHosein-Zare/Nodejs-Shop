@@ -18,3 +18,11 @@ router.get('/:id', async(req, res) => {
     res.send(star);
 });
 
+// post api
+router.post('/', async(req, res) => {
+    const star = new Star({
+        product: req.body.productId
+    });
+
+    await star.save();
+});
