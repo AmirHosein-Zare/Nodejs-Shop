@@ -37,3 +37,12 @@ router.put('/:id', async(req, res) => {
     }, {new: true});
     res.send(newOrder);
 });
+
+// delete api
+router.delete('/:id', async(req, res) => {
+    const order = await Order.findByIdAndRemove(req.params.id);
+    if(!order) return res.status(404).send('Order Not Found');
+
+    res.send(order);
+})
+
