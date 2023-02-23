@@ -10,3 +10,11 @@ router.get('/', async(req, res) => {
     res.send(stars);
 });
 
+// get by id api
+router.get('/:id', async(req, res) => {
+    const star = await Star.findById(req.params.id);
+    if(!star) return res.status(404).send('star Not Found');
+
+    res.send(star);
+});
+
