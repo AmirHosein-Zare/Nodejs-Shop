@@ -46,4 +46,12 @@ router.put('/:id', async(req, res) => {
     res.send(comment);
 });
 
+// delete Api
+router.delete('/:id', async(req, res) => {
+    const comment = await Comment.findByIdAndRemove(req.params.id);
+    if(!comment) return res.status(404).send('Comment Not Found');
+
+    res.send(comment);
+});
+
 module.exports = router;
