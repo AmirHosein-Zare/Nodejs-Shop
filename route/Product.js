@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Product, isValidProduct } = require("../model/Product");
+const {Star} = require('../model/Star');
 
 //get all products
 router.get("/", async (req, res) => {
@@ -21,7 +22,7 @@ router.get("/:id", async (req, res) => {
 // post product api
 router.post("/", async (req, res) => {
   const { error } = isValidProduct(req.body);
-  if (error) return res.status(400).send("Not Valid Data");
+  if (error) return res.status(400).send("Not Valid Data" + error);
 
   const newProduct = req.body;
 
@@ -39,7 +40,18 @@ router.post("/", async (req, res) => {
     neighbor: newProduct.neighbor,
     comments: [],
   });
+  // save product for first time
+  await product.save();
 
+  const star = new Star({
+    product: product._id,
+    average: 0
+  })
+  // create star
+  await star.save();
+  // set starID in products
+  product.star = star._id;
+  // save product for final
   await product.save();
   res.send(product);
 });

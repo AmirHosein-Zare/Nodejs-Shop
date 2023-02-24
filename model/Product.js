@@ -28,7 +28,6 @@ const productSchema = new mongoose.Schema({
     expain:{
         type: String,
         trim: true,
-        required: false
     },
     weight:{
         type: Number,
