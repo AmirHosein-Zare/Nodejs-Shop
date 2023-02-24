@@ -26,3 +26,4 @@ const isValidStar = (data) => {
 
 module.exports.StarSchema = StarSchema;
 module.exports.Star = Star;
+module.exports.isValidStar = isValidStar;

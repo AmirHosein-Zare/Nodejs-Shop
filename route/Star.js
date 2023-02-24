@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Star} = require('../model/Star');
+const {Star, isValidStar} = require('../model/Star');
 
 // get all api
 router.get('/', async(req, res) => {
@@ -20,6 +20,9 @@ router.get('/:id', async(req, res) => {
 
 // post api
 router.post('/', async(req, res) => {
+    const {error} = await isValidStar(req.body);
+    if(error) return res.status(400).send('Not Valid Data');
+
     const star = new Star({
         product: req.body.productId
     });
