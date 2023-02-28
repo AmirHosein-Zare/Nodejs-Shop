@@ -83,3 +83,4 @@ const isValidUser = (user) => {
 module.exports.UserSchema = UserSchema;
 module.exports.User = User;
 module.exports.isValidUser = isValidUser;
+module.exports.getJwt = this.getJwt;
