@@ -2,6 +2,8 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 const {Comment} = require('./Comment');
 const {Order} = require('./Order');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 // regular expression for email
 let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
@@ -60,6 +62,10 @@ const UserSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', UserSchema);
+
+UserSchema.methods.getjwt = function (){
+    return jwt.sign({_id: this._id}, config.get('privateKey'))
+}
 
 const isValidUser = (user) => {
     const schema = Joi.object({
