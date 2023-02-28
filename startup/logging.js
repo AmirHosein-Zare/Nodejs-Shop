@@ -4,15 +4,18 @@ require('winston-mongodb');
 require('express-async-errors');
 
 module.exports = function(){
-    winston.add(winston.transports.File, {filename: 'logFile.log'});
-    winston.add(winston.transports.MongoDB, {db: config.get('db'), level: 'error'});
-
+    winston.add(
+        new winston.transports.File({filename:'logfile.log'})
+    ); 
+    winston.add(
+        new winston.transports.MongoDB({db: config.get('db')})
+    );
     winston.handleExceptions(
         new winston.transports.Console({prettyprint: true}),
         new winston.transports.File({ filename: 'unhandleException.log' })
     );
 
-    winston.rejections.handle(new winston.transports.File({ filename: 'rejection.log' }));
+    winston.exceptions.handle(new winston.transports.File({ filename: 'rejection.log' }));
 
     process.on('uncaughtException', (ex)=> {
         winston.error(ex);
