@@ -2,6 +2,7 @@ const config = require('config');
 const winston = require('winston');
 require('winston-mongodb');
 
+
 module.exports = function(){
     winston.add(winston.transports.File, {filename: 'logFile.log'});
     winston.add(winston.transports.MongoDB, {db: config.get('db'), level: 'error'});
