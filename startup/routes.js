@@ -7,6 +7,7 @@ const ArticleRoutes = require('../route/Article');
 const CommentRoutes = require('../route/Comment');
 const OrderRoutes = require('../route/Order');
 const StarRoutes = require('../route/Star');
+const LoginRoutes = require('../route/login');
 
 module.exports = function(app) {
     app.use(express.json());
@@ -19,4 +20,5 @@ module.exports = function(app) {
     app.use('/api/comments', CommentRoutes);
     app.use('/api/orders', OrderRoutes);
     app.use('/api/stars', StarRoutes);
+    app.use('/api/login', LoginRoutes);
 }
