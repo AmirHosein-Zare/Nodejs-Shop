@@ -1,9 +1,11 @@
 const express = require('express');
+const admin = require('../middleware/admin');
+const auth = require('../middleware/auth');
 const router = express.Router();
 const {Order} = require('../model/Order');
 
 // get all api
-router.get('/', async(req, res) => {
+router.get('/', [admin, auth], async(req, res) => {
     const orders = await Order.find();
     if(!orders) return res.status(404).send('Orders Not Found');
 
@@ -11,7 +13,7 @@ router.get('/', async(req, res) => {
 });
 
 // get by id api
-router.get('/:id', async(req, res) => {
+router.get('/:id', auth, async(req, res) => {
     const order = await Order.findById(req.params.id);
     if(!order) return res.status(404).send('Order Not Found');
 
@@ -19,7 +21,7 @@ router.get('/:id', async(req, res) => {
 });
 
 // post api
-router.post('/', async(req, res) => {
+router.post('/', auth, async(req, res) => {
     const order = new Order({
         User: req.body.userId,
         Product: req.body.productId
@@ -30,7 +32,7 @@ router.post('/', async(req, res) => {
 });
 
 // put api
-router.put('/:id', async(req, res) => {
+router.put('/:id', [auth, admin], async(req, res) => {
     const newOrder = await Order.findByIdAndUpdate(req.params.id, {
         'User': req.body.userId,
         'Product': req.body.productId
@@ -39,7 +41,7 @@ router.put('/:id', async(req, res) => {
 });
 
 // delete api
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', [auth, admin], async(req, res) => {
     const order = await Order.findByIdAndRemove(req.params.id);
     if(!order) return res.status(404).send('Order Not Found');
 
