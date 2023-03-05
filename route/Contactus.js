@@ -5,7 +5,7 @@ const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 
 //get all contactus api
-router.get('/', async(req, res) => {
+router.get('/', [auth, admin], async(req, res) => {
     const messages = await Contactus.find();
     if(!messages) return res.status(404).send('Messages Not Found');
 
@@ -13,7 +13,7 @@ router.get('/', async(req, res) => {
 })
 
 // get contact us by id api
-router.get('/:id', async(req, res) => {
+router.get('/:id', [auth, admin], async(req, res) => {
     const message = await Contactus.findById(req.params.id);
     if(!message) return res.status(404).send('Message Not Found');
 
