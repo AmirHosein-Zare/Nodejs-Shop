@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const {User, isValidUser} = require('../model/User');
+const auth = require('../middleware/auth');
 
 //get users reequest Api -> it returns al users
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     const users = await User.find();
     if(!users) return res.status(404).send('can\'t find any user');
     
@@ -11,15 +12,18 @@ router.get('/', async (req, res) => {
 });
 
 // get user bi id 
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
     const user = await User.findById(req.params.id);
     if(!user) return res.status(404).send('user Not Found!');
 
     res.send(user);
 });
 
+// get user (name -- username -- email ) 
+
+
 // post request -> create new user
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     const {error} = isValidUser(req.body);
     if(error) return res.status(400).send('Not valid data');
 
@@ -39,7 +43,7 @@ router.post('/', async (req, res) => {
 });
 
 //put request -> edit all data
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     //get user with id from url params
     const user = await User.findById(req.params.id);
     if(!user) return res.status(404).send('User Not Found');
@@ -69,7 +73,7 @@ router.put('/:id', async (req, res) => {
 // edit one of the comment or order
 
 // delete request
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     // find user and delete
     const user = await User.findByIdAndRemove(req.params.id);
     res.send(user);
