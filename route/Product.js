@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { Product, isValidProduct } = require("../model/Product");
 const {Star} = require('../model/Star');
+const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 
 //get all products
 router.get("/", async (req, res) => {
@@ -20,7 +22,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // post product api
-router.post("/", async (req, res) => {
+router.post("/", [auth, admin], async (req, res) => {
   const { error } = isValidProduct(req.body);
   if (error) return res.status(400).send("Not Valid Data" + error);
 
@@ -57,7 +59,7 @@ router.post("/", async (req, res) => {
 });
 
 // put product api
-router.put("/:id", async (req, res) => {
+router.put("/:id", [admin, auth], async (req, res) => {
   // check data validation
   const { error } = isValidProduct(req.body);
   if (error) return res.status(400).send("Not Valid Data");
@@ -93,7 +95,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //delete product api
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", [auth, admin], async (req, res) => {
   const product = await Product.findByIdAndRemove(req.params.id);
   if (!product) return res.status(404).send("Product Not Found");
   res.send(product);
