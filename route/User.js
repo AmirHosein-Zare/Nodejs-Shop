@@ -110,7 +110,7 @@ router.put('/:id', auth, async (req, res) => {
 // edit one of the comment or order
 
 // delete request
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
     // find user and delete
     const user = await User.findByIdAndRemove(req.params.id);
     res.send(user);
