@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {Contactus, isValidContactus} = require('../model/Contactus');
+const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 
 //get all contactus api
 router.get('/', async(req, res) => {
@@ -19,7 +21,7 @@ router.get('/:id', async(req, res) => {
 })
 
 // post Contact us api
-router.post('/', async(req, res) => {
+router.post('/', auth, async(req, res) => {
     const {error} = isValidContactus(req.body);
     if(error) return res.status(400).send('Not Valid Data');
 
@@ -34,7 +36,7 @@ router.post('/', async(req, res) => {
 });
 
 // put api
-router.put('/:id', async(req, res) => {
+router.put('/:id', [auth, admin], async(req, res) => {
     const message = await Contactus.findById(req.params.id);
     if(!message) return res.status(404).send('Message Not Found');
 
@@ -53,7 +55,7 @@ router.put('/:id', async(req, res) => {
 });
 
 // delete api
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', [auth, admin], async(req, res) => {
     const message = await Contactus.findByIdAndRemove(req.params.id);
     if(!message) return res.status(404).send('Message Not Found');
 
