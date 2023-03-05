@@ -1,4 +1,6 @@
 const express = require('express');
+const admin = require('../middleware/admin');
+const auth = require('../middleware/auth');
 const router = express.Router();
 const {isValidArticle, Article} = require('../model/Article');
 const {User} = require('../model/User');
@@ -20,7 +22,7 @@ router.get('/:id', async(req, res) => {
 });
 
 // post article api
-router.post('/', async(req, res) => {
+router.post('/', [auth, admin], async(req, res) => {
     const {error} = isValidArticle(req.body);
     //if(error) return res.status(400).send('Not Valid Data');
 
@@ -38,7 +40,7 @@ router.post('/', async(req, res) => {
 });
 
 // PUT API
-router.put('/:id', async(req, res) => {
+router.put('/:id', [admin, auth], async(req, res) => {
     // check article
     const check = await Article.findById(req.params.id);
     if(!check) return res.status(404).send('Article Not Found');
@@ -63,7 +65,7 @@ router.put('/:id', async(req, res) => {
 })
 
 // delete api
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', [auth, admin], async(req, res) => {
     const article = await Article.findByIdAndRemove(req.params.id);
     if(!article) return res.status(404).send('article Not Found');
 
