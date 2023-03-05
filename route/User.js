@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {User, isValidUser} = require('../model/User');
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 
 //get users reequest Api -> it returns al users
 router.get('/', auth, async (req, res) => {
@@ -48,6 +49,35 @@ router.post('/', auth, async (req, res) => {
     await user.save();
     res.send(user);
 });
+
+// put api for admin
+router.put('/admin', [admin, auth], async(req, res) => {
+    //get user with id from url params
+    const user = await User.findById(req.params.id);
+    if(!user) return res.status(404).send('User Not Found');
+
+    // check valid data
+    const {error} = isValidUser(req.body);
+    if(error) return res.status(400).send('Noy valid data');
+
+    // get new user
+    const newUser = req.body;
+
+    //update user
+    const result = await User.findByIdAndUpdate(req.params.id, {
+        $set:{
+            'name': newUser.name,
+            'username': newUser.username,
+            'number': newUser.number,
+            'email': newUser.email,
+            'password': newUser.password,
+            'address': newUser.address,
+            'isAdmin': newUser.isAdmin
+        }
+    }, {new: true});
+
+    res.send(result);
+})
 
 //put request -> edit all data
 router.put('/:id', auth, async (req, res) => {
