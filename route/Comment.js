@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {Comment, isValidComment} = require('../model/Comment');
+const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 
 // get all comments api
 router.get('/', async(req, res) => {
@@ -11,7 +13,7 @@ router.get('/', async(req, res) => {
 });
 
 // get comment by id
-router.get('/:id', async(req, res) => {
+router.get('/:id', [auth, admin],  async(req, res) => {
     const comment = await Comment.findById();
     if(!comment) return res.status(404).send('Comment Not Found');
 
@@ -19,7 +21,7 @@ router.get('/:id', async(req, res) => {
 });
 
 // post api
-router.post('/', async(req, res) => {
+router.post('/', auth, async(req, res) => {
     const comment = new Comment({
         User: req.body.userId,
         Product: req.body.productId,
@@ -31,7 +33,7 @@ router.post('/', async(req, res) => {
 });
 
 //put api
-router.put('/:id', async(req, res) => {
+router.put('/:id', [auth, admin], async(req, res) => {
     const result = await Comment.findById(req.params.id);
     if(!result) return res.status(404).send('Comment Not Found');
 
@@ -47,7 +49,7 @@ router.put('/:id', async(req, res) => {
 });
 
 // delete Api
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', [admin, auth], async(req, res) => {
     const comment = await Comment.findByIdAndRemove(req.params.id);
     if(!comment) return res.status(404).send('Comment Not Found');
 
