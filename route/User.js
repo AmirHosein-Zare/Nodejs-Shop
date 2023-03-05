@@ -20,7 +20,14 @@ router.get('/:id', auth, async (req, res) => {
 });
 
 // get user (name -- username -- email ) 
+router.get('/all', async(req, res) => {
+    const users = await User
+        .find()
+        .select({name: 1, username: 1, email: 1});
+    if(!users) return res.status(404).send('Not Found');
 
+    res.send(users);
+})
 
 // post request -> create new user
 router.post('/', auth, async (req, res) => {
