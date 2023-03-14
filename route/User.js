@@ -5,8 +5,7 @@ const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
-const someOtherPlaintextPassword = 'not_bacon';
+
 //get users reequest Api -> it returns al users
 router.get('/', auth, async (req, res) => {
     const users = await User.find();
@@ -43,7 +42,7 @@ router.post('/', auth, async (req, res) => {
         username: req.body.username,
         number: req.body.number,
         email: req.body.email,
-        password: bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
+        password: bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
             return hash
         }),
         address: req.body.address,
