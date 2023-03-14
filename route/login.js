@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const {User} = require('../model/User');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
 
 // login request
 router.post('/', async(req, res) => {
@@ -11,8 +14,12 @@ router.post('/', async(req, res) => {
     console.log(user);
     if(!user) return res.status(404).send('User Not Found');
     // check password
-    if(req.body.password === user.password){
-        console.log("true");
+    if(bcrypt.compare(req.body.password, user.password, function(err, result) {
+        if(err){
+            console.log(err);
+        }
+        return result;
+    })){
         const token = await user.getJwt();
         res.status(200).header('x-header-auth', token);
     }
