@@ -31,9 +31,7 @@ const Article = mongoose.model('Article', ArticleSchema);
 const isValidArticle = (article) => {
     const schema = Joi.object({
         title: Joi.string().trim().required(),
-        date: Joi.date(),
-        description: Joi.string().trim().required(),
-        photo: Joi.string()
+        description: Joi.string().trim().required()
     });
 
     return schema.validate(article);

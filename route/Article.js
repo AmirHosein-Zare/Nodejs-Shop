@@ -25,7 +25,7 @@ router.get('/:id', ObjectId, async(req, res) => {
 // post article api
 router.post('/', [auth, admin], async(req, res) => {
     const {error} = isValidArticle(req.body);
-    //if(error) return res.status(400).send('Not Valid Data');
+    if(error) return res.status(400).send('Not Valid Data');
 
     const newArticle = req.body;
 
