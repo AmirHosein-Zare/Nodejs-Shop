@@ -65,11 +65,11 @@ const UserSchema = new mongoose.Schema({
     }], 
 });
 
-const User = mongoose.model('User', UserSchema);
-
-UserSchema.methods.getjwt = function (){
-    return jwt.sign({_id: this._id}, config.get('privateKey'))
+UserSchema.methods.getJwt = function (){
+    return jwt.sign({_id: this._id, isAdmin: this.isAdmin}, config.get('privateKey'));
 }
+
+const User = mongoose.model('User', UserSchema);
 
 const isValidUser = (user) => {
     const schema = Joi.object({
