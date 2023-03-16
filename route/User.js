@@ -33,18 +33,27 @@ router.get('/all', async(req, res) => {
 })
 
 // post request -> create new user
-router.post('/', auth, async (req, res) => {
+router.post('/', async (req, res) => {
     const {error} = isValidUser(req.body);
     if(error) return res.status(400).send('Not valid data');
+
+    let pass;
+    bcrypt
+        .genSalt(saltRounds)
+        .then(salt => {
+          return bcrypt.hash(req.body.password, salt)
+        })
+        .then(hash => {
+          pass = hash
+        })
+        .catch(err => console.error(err.message))
 
     const user = new User({
         name: req.body.name,
         username: req.body.username,
         number: req.body.number,
         email: req.body.email,
-        password: bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-            return hash
-        }),
+        password: pass,
         address: req.body.address,
         comments: [],
         orders: []
