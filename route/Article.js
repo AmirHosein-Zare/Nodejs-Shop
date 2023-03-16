@@ -4,6 +4,7 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 const {isValidArticle, Article} = require('../model/Article');
 const {User} = require('../model/User');
+const ObjectId = require('../middleware/objectId');
 
 // get all Aritcle api
 router.get('/', async(req, res) => {
@@ -14,7 +15,7 @@ router.get('/', async(req, res) => {
 });
 
 //get article by id api
-router.get('/:id', async(req, res) => {
+router.get('/:id', ObjectId, async(req, res) => {
     const article = await Article.findById(req.params.id);
     if(!article) return res.status(404).send('Article Not Found');
 
