@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 const {isValidArticle, Article} = require('../model/Article');
 const {User} = require('../model/User');
-const ObjectId = require('../middleware/objectId');
+const objectId = require('../middleware/objectId');
 
 // get all Aritcle api
 router.get('/', async(req, res) => {
@@ -15,7 +15,7 @@ router.get('/', async(req, res) => {
 });
 
 //get article by id api
-router.get('/:id', ObjectId, async(req, res) => {
+router.get('/:id', objectId, async(req, res) => {
     const article = await Article.findById(req.params.id);
     if(!article) return res.status(404).send('Article Not Found');
 
@@ -41,14 +41,14 @@ router.post('/', [auth, admin], async(req, res) => {
 });
 
 // PUT API
-router.put('/:id', [admin, auth], async(req, res) => {
+router.put('/:id', [admin, auth, objectId], async(req, res) => {
     // check article
     const check = await Article.findById(req.params.id);
     if(!check) return res.status(404).send('Article Not Found');
 
     // check validation
     const {error} = isValidArticle(req.body);
-    if(error) return res.status(404).send('Article Not Valid');
+    if(error) return res.status(400).send('Article Not Valid');
 
     const newArticle = req.body;
 
@@ -66,7 +66,7 @@ router.put('/:id', [admin, auth], async(req, res) => {
 })
 
 // delete api
-router.delete('/:id', [auth, admin], async(req, res) => {
+router.delete('/:id', [auth, admin, objectId], async(req, res) => {
     const article = await Article.findByIdAndRemove(req.params.id);
     if(!article) return res.status(404).send('article Not Found');
 

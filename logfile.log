@@ -48,3 +48,217 @@
 {"level":"info","message":"connected to mongodb..."}
 {"level":"info","message":"connected to mongodb..."}
 {"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"level":"info","message":"connected to mongodb..."}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"level":"info","message":"connected to mongodb..."}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"ali1"},"level":"error"}
+{"level":"info","message":"connected to mongodb..."}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"ali1"},"level":"error"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"ali1"},"level":"error"}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"ali1"},"level":"error"}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"ali1"},"level":"error"}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"_message":"User validation failed","errors":{"password":{"kind":"required","message":"Path `password` is required.","name":"ValidatorError","path":"password","properties":{"message":"Path `password` is required.","path":"password","type":"required"}}},"level":"error","message":"User validation failed: password: Path `password` is required.","name":"ValidationError"}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}
+{"level":"info","message":"connected to mongodb..."}

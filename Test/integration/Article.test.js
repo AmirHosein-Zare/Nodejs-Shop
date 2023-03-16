@@ -1,5 +1,6 @@
 const {Article} = require('../../model/Article');
 const request = require('supertest');
+const {User} = require('../../model/User');
 let server;
 
 describe('article integration test', () => {
@@ -7,6 +8,7 @@ describe('article integration test', () => {
     afterEach( async () => {
         server.close();
         await Article.remove({});
+        await User.remove({});
     })
 
     describe('GET / ------------------------------', () => {
@@ -52,5 +54,144 @@ describe('article integration test', () => {
 
             expect(res.status).toBe(404);
         })
+    })
+
+    describe('POST / ----------------------------', () => {
+        let token;
+        let article = {
+            title: 'number1', 
+            description: 'sdfsdfretyrtmhgroijghjng'
+        }
+
+        let exec = () => {
+            return request(server)
+                .post('/api/articles')
+                .set('x-header-auth', token)
+                .send(article);
+        }
+
+        it('post valid data & without log in & get 401 status code', async () => {
+            token = '';
+
+            const res = await exec();
+            
+            expect(res.status).toBe(401);
+        })
+
+        it('post valid data & not Admin & get 403 status code', async () => {
+            const user = new User({
+                name: 'sss',
+                username: 'sdfer',
+                number: '03715468879',
+                email: 'sdsdsdd@gmail.com',
+                password: 'sdsadasdsd13213',
+                address: 'sdasdasdasdasd'
+            });
+
+            await user.save();
+            const findUser = await User.findOne({username: 'sdfer'});
+            token = await findUser.getJwt();
+
+
+            const res = await exec();
+            
+            expect(res.status).toBe(403);
+        })
+
+        it('post valid data  & get 200 status code', async () => {
+            const user = new User({
+                name: 'sss',
+                username: 'sdfer444',
+                number: '03715468879',
+                email: 'sdsdsdd@gmail.com',
+                password: 'sdsadasdsd13213',
+                address: 'sdasdasdasdasd',
+                isAdmin: true
+            });
+            
+            await user.save();
+            const findUser = await User.findOne({username: 'sdfer444'});
+            token = await findUser.getJwt();
+
+            const res = await exec();
+            
+            expect(res.status).toBe(200);
+        })
+
+        it('post invalid data  & get 400 status code', async () => {
+            const user = new User({
+                name: 'sss',
+                username: 'sdfer444',
+                number: '09172569874',
+                email: 'sdsdsdd@gmail.com',
+                password: 'sdsadasdsd13213',
+                address: 'sssssssssssssssytftrvuyvt',
+                isAdmin: true
+            });
+            
+            await user.save();
+            const findUser = await User.findOne({username: 'sdfer444'});
+            token = await findUser.getJwt();
+
+            article = {
+                title: 'number1', 
+                description: 1
+            }
+
+            const res = await exec();
+
+            expect(res.status).toBe(400);
+        })
+    })
+
+    describe('PUT /:id--------------------------', () => {
+        let token;
+        const newArticle = {
+            title: 'number',
+            description: 'dfdsfdsfdsfdsfdsfsdfsdfdsf'
+        }
+        let findArticle;
+        let article;
+
+        beforeEach( async () => {
+            const user = new User({
+                name: 'sss',
+                username: 'sdfer444',
+                number: '03715468879',
+                email: 'sdsdsdd@gmail.com',
+                password: 'sdsadasdsd13213',
+                address: 'sdasdasdasdasd',
+                isAdmin: true
+            });
+
+            article = new Article({
+                title: 'number1', 
+                description: 'sdfsdfretyrtmhgroijghjng'
+            })
+
+            await article.save();
+            findArticle = await Article.findOne({title: 'number1'});
+            
+            await user.save();
+            const findUser = await User.findOne({username: 'sdfer444'});
+            token = await findUser.getJwt();
+        })
+
+        let exec = () => {
+            return request(server)
+                .put('/api/articles/' + article._id)
+                .set('x-header-token', token)
+                .send(newArticle);
+        }
+
+        it('put article without log in & 401 status code', async () => {
+            token = '';
+
+            const res = await exec();
+
+            expect(res.status).toBe(401);
+        })
+
+
     })
 })
