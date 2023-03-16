@@ -1,3 +1,4 @@
 {
-    "db": "mongodb://127.0.0.1/Saffron-test"
+    "db": "mongodb://127.0.0.1/Saffron-test",
+    "privateKey":"jwtToken"
 }
