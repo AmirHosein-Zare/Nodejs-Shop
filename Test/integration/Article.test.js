@@ -227,6 +227,97 @@ describe('article integration test', () => {
                 expect(res.status).toBe(404);
         })
 
+        it('put article if the input is invalid', async () => {
+            newArticle = {
+                title: 1,
+                description: 'dfsdfsdfs'
+            }
+
+            const res = await exec();
+
+            expect(res.status).toBe(400);
+        })
+
+    })
+
+    describe('DELETE /:id ------------------------------------', () => {
+        let token;
+        let findArticle;
+        let article;
+
+        beforeEach( async () => {
+            const user = new User({
+                name: 'sss',
+                username: '145876',
+                number: '03715468879',
+                email: '56489465156mknmknj@gmail.com',
+                password: 'sdsadasdsd13213',
+                address: 'sdasdasdasdasd',
+                isAdmin: false
+            });
+
+            article = new Article({
+                title: 'number1', 
+                description: 'sdfsdfretyrtmhgroijghjng'
+            })
+
+            await article.save();
+            findArticle = await Article.findOne({title: 'number5428'});
+            
+            await user.save();
+            const findUser = await User.findOne({username: '145876'});
+            token = findUser.getJwt();
+        })
+
+        let exec = async () => {
+            return await request(server)
+                .delete('/api/articles/' + findArticle._id)
+                .set('x-header-auth', token)
+                .send(newArticle);
+        }
+
+        it('delete article with out loggin', async () => {
+            token = '';
+
+            const res = await exec();
+
+            expect(res.status).toBe(401);
+        })
+
+        it('delete article when isAdmin is false & 403 status code', async () => {
+            const res = await exec();
+
+            expect(res.status).toBe(403);
+        })
+
+        it('delete article with admin & 200 status code', async () => {
+            const user = new User({
+                name: 'sss',
+                username: 'aws',
+                number: '03715468879',
+                email: '56489465156mknmknj@gmail.com',
+                password: 'sdsadasdsd13213',
+                address: 'sdasdasdasdasd',
+                isAdmin: true
+            });
+
+            const findUser = await User.findOne({username: 'aws'});
+            token = findUser.getJwt();
+
+            const res = await exec();
+
+            expect(res.status).toBe(200);
+        })
+
+        it('delete article with invalid objectId & 404 status code', async () => {
+            const res = await request(server)
+                .put('/api/articles/' + '1')
+                .set('x-header-auth', token)
+                .send(newArticle);
+
+
+                expect(res.status).toBe(404);
+        })
     })
    
 })
