@@ -147,7 +147,7 @@ describe('article integration test', () => {
     describe('PUT /:id--------------------------', () => {
         let token;
         const newArticle = {
-            title: 'number',
+            title: 'number5428',
             description: 'dfdsfdsfdsfdsfdsfsdfsdfdsf'
         }
         let findArticle;
@@ -156,12 +156,12 @@ describe('article integration test', () => {
         beforeEach( async () => {
             const user = new User({
                 name: 'sss',
-                username: 'sdfer444',
+                username: '145876',
                 number: '03715468879',
-                email: 'sdsdsdd@gmail.com',
+                email: '56489465156mknmknj@gmail.com',
                 password: 'sdsadasdsd13213',
                 address: 'sdasdasdasdasd',
-                isAdmin: true
+                isAdmin: false
             });
 
             article = new Article({
@@ -170,17 +170,17 @@ describe('article integration test', () => {
             })
 
             await article.save();
-            findArticle = await Article.findOne({title: 'number1'});
+            findArticle = await Article.findOne({title: 'number5428'});
             
             await user.save();
-            const findUser = await User.findOne({username: 'sdfer444'});
-            token = await findUser.getJwt();
+            const findUser = await User.findOne({username: '145876'});
+            token = findUser.getJwt();
         })
 
-        let exec = () => {
-            return request(server)
-                .put('/api/articles/' + article._id)
-                .set('x-header-token', token)
+        let exec = async () => {
+            return await request(server)
+                .put('/api/articles/' + findArticle._id)
+                .set('x-header-auth', token)
                 .send(newArticle);
         }
 
@@ -192,6 +192,41 @@ describe('article integration test', () => {
             expect(res.status).toBe(401);
         })
 
+        it('put article when isAdmin is false & 403 status code', async () => {
+            const res = await exec();
+
+            expect(res.status).toBe(403);
+        })
+
+        it('put article with admin & 200 status code', async () => {
+            const user = new User({
+                name: 'sss',
+                username: 'aws',
+                number: '03715468879',
+                email: '56489465156mknmknj@gmail.com',
+                password: 'sdsadasdsd13213',
+                address: 'sdasdasdasdasd',
+                isAdmin: true
+            });
+
+            const findUser = await User.findOne({username: 'aws'});
+            token = findUser.getJwt();
+
+            const res = await exec();
+
+            expect(res.status).toBe(200);
+        })
+
+        it('put article with invalid objectId & 404 status code', async () => {
+            const res = await request(server)
+                .put('/api/articles/' + '1')
+                .set('x-header-auth', token)
+                .send(newArticle);
+
+
+                expect(res.status).toBe(404);
+        })
 
     })
+   
 })
